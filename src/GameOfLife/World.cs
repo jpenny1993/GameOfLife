@@ -49,7 +49,7 @@ namespace GameOfLife
                 var worldX = oX + x;
                 var worldY = oY + y;
 
-                if (!IsTileValid(x, y)) 
+                if (!IsTileValid(worldX, worldY)) 
                     continue;
 
                 SetEntity(worldX, worldY, lifeform.IsOccupied(oX, oY));

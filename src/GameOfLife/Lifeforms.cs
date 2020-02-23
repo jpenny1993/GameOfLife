@@ -14,12 +14,21 @@ namespace GameOfLife
 
         public int Height() => _tiles.GetUpperBound(0) + 1;
 
-        public static IEnumerable<Lifeform> Random(int count) => typeof(Lifeform)
+        public static IEnumerable<Type> AllTypes() => typeof(Lifeform)
             .Assembly.GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(Lifeform)))
-            .OrderBy(_ => Guid.NewGuid())
-            .Take(count)
-            .Select(t => (Lifeform)Activator.CreateInstance(t));
+            .Where(t => t.IsClass && !t.IsAbstract)
+            .Where(t => t.IsSubclassOf(typeof(Lifeform)));
+
+        public static IEnumerable<Lifeform> Random(Random random, int count) 
+        {
+            var lifeforms = AllTypes().ToArray();
+            return Enumerable.Range(0, count)
+                .Select(_ => AllTypes()
+                    .Skip(random.Next(lifeforms.Length))
+                    .Take(1)
+                    .First())
+                .Select(t => (Lifeform)Activator.CreateInstance(t));
+        }
     }
 
     #region Still Lifes

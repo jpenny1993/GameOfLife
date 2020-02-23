@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>GameOfLife.ConsoleApp</AssemblyName>
+    <RootNamespace>GameOfLife.ConsoleApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameOfLife\GameOfLife.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace GameOfLife.ConsoleApp
@@ -19,12 +19,20 @@ namespace GameOfLife.ConsoleApp
             do
             {
                 // Repopulate the world with random occupiers
-                if (world.IsDead()) 
+                if (world.IsDead())
                 {
-                    for (var i = 0; i < 100; i++)
+                    foreach (var lifeform in Lifeform.Random(10))
                     {
-                        world.SetEntity(random.Next(MaxX), random.Next(MaxY), true);
+                        world.AddLifeform(
+                            random.Next(20, MaxX - 20),
+                            random.Next(20, MaxY - 20),
+                            lifeform);
                     }
+
+                    //for (var i = 0; i < 50; i++)
+                    //{
+                    //    world.SetEntity(random.Next(MaxX), random.Next(MaxY), true);
+                    //}
                 }
 
                 // Print the changes between the previous frame and the lived frame to console

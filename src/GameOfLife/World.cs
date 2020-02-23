@@ -39,6 +39,24 @@ namespace GameOfLife
         }
 
         /// <summary>
+        /// Draws the provided lifeform in the next frame at the provided co-ordinates.
+        /// </summary>
+        public void AddLifeform(int x, int y, Lifeform lifeform) 
+        {
+            for (var oY = 0; oY < lifeform.Height(); oY++)
+            for (var oX = 0; oX < lifeform.Width(); oX++)
+            {
+                var worldX = oX + x;
+                var worldY = oY + y;
+
+                if (!IsTileValid(x, y)) 
+                    continue;
+
+                SetEntity(worldX, worldY, lifeform.IsOccupied(oX, oY));
+            }
+        }
+
+        /// <summary>
         /// Counts the number of occupied tiles surrounding the given co-ordinates.
         /// </summary>
         public int CountNeighbours(int x, int y)

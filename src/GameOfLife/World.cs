@@ -152,7 +152,7 @@ namespace GameOfLife
                     // Death, due to loneliness or overcrowding
                     SetEntity(x, y, false);
                 }
-                else if (!isAlive && neighbours > 2)
+                else if (!isAlive && neighbours == 3)
                 {
                     // Birth
                     SetEntity(x, y, true);
